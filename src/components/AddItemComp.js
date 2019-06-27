@@ -26,9 +26,9 @@ class AddItemComp extends Component{
 
         return(
             <div>
-                <input placeholder="Item Name" onChange={(event) => {this.handleChangeItemName(event.target.value)}}/>
-                <input placeholder="Quantity" onChange={(event) => {this.handleChangeQuantity(event.target.value)}}/>
-                <input placeholder="Item Cost" onChange={(event) => {this.handleChangeItemCost(event.target.value)}}/>
+                <input className="addItemInputBox" placeholder="Item Name" onChange={(event) => {this.handleChangeItemName(event.target.value)}}/>
+                <input className="addItemInputBox" placeholder="Quantity" onChange={(event) => {this.handleChangeQuantity(event.target.value)}}/>
+                <input className="addItemInputBox" placeholder="Item Cost" onChange={(event) => {this.handleChangeItemCost(event.target.value)}}/>
                 <button onClick={() => this.props.addItem(this.state.currentItemName, this.state.currentQuantity, this.state.currentItemCost)}>Add Item</button>
             </div>
 
