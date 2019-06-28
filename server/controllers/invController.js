@@ -7,8 +7,8 @@ module.exports = {
     },
 
     addNewItem: (req, res) => {
-        let { itemName, quantity, itemCost } = req.body;
-        let newItem = {id, itemName, quantity, itemCost};
+        let { itemName, sku, quantity, location, itemCost, note } = req.body;
+        let newItem = {id, itemName, sku, quantity, location, itemCost, note};
         id++;
         inventoryItems.push(newItem);
         res.status(200).send(inventoryItems);
@@ -16,14 +16,18 @@ module.exports = {
 
     editItem: (req, res) => {
         let { id } = req.params;
-        let { itemName, quantity, itemCost } = req.query;
+        let { itemName, sku, quantity, location, itemCost, note } = req.query;
         let index = inventoryItems.findIndex(item => item.id === +id);
         console.log(inventoryItems[index].itemName)
         itemName ? inventoryItems[index].itemName = itemName : null;
+        sku ? inventoryItems[index].sku = sku : null;
         quantity ? inventoryItems[index].quantity = +quantity : null;
+        location ? inventoryItems[index].location = location : null;
         itemCost ? inventoryItems[index].itemCost = +itemCost : null;
+        note ? inventoryItems[index].note = note : null;
         res.status(200).send(inventoryItems);
     },
+
 
     deleteItem: (req, res) => {
         let {id } = req.params;
