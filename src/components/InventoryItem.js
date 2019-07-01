@@ -11,6 +11,7 @@ class InventoryItem extends Component{
         this.state = {
             editing: false,
             itemName: props.item.itemName,
+            editDate: props.item.editDate,
             sku: props.item.sku,
             quantity: props.item.quantity,
             location: props.item.location,
@@ -45,6 +46,11 @@ class InventoryItem extends Component{
         let newTotalCost = (this.state.quantity * this.state.itemCost).toFixed(2);
         this.setState({totalCost: newTotalCost});
     }
+    handleChangeEditDate(newEditDate){
+        this.setState({editDate: newEditDate});
+        let newTotalCost = (this.state.quantity * this.state.itemCost).toFixed(2);
+        this.setState({totalCost: newTotalCost});
+    }
     handleChangeSku(newSku){
         this.setState({sku: newSku});
         let newTotalCost = (this.state.quantity * this.state.itemCost).toFixed(2);
@@ -72,21 +78,23 @@ class InventoryItem extends Component{
     }
 
     render(){
-        let {itemName, sku, quantity, location, itemCost, totalCost, note} = this.state;
+        let {itemName, editDate, sku, quantity, location, itemCost, totalCost, note} = this.state;
 
         return(
             <div className="itemContainer">
                 <div className={this.state.editing === true ? ("hidden") : "contentRow"}>
                     <div className="smallContextBox" style={{width: "10.2vw"}}><span style={{fontWeight: 900}} >{itemName}</span></div> 
+                    <div className="smallContextBox" >{editDate}</div>
                     <div className="smallContextBox">{sku}</div> 
-                    <div className="smallContextBox">{quantity}</div> 
+                    <div className="smallContextBox">{`${quantity.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div> 
                     <div className="smallContextBox">{location}</div> 
                     <div className="smallContextBox">{`$${itemCost}`}</div> 
-                    <div className="smallContextBox">{`$${totalCost}`}</div> 
+                    <div className="smallContextBox" style={{width: "8vw"}}>{`$${totalCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div> 
                     <div className="smallContextBox" style={{width: "14vw"}}>{note}</div> 
                 </div>
                 <div className={this.state.editing === false ? ("hidden") : "contentRow"}>
                     <input className="addItemInputBox" placeholder="Item Name" style={{width: "10vw"}} value={this.state.itemName} onChange={(event) => {this.handleChangeItemName(event.target.value)}}/>
+                    <input className="addItemInputBox" placeholder="Edit Date" value={this.state.editDate} onChange={(event) => {this.handleChangeEditDate(event.target.value)}}/>
                     <input className="addItemInputBox" placeholder="SKU" value={this.state.sku} onChange={(event) => {this.handleChangeSku(event.target.value)}}/>
                     <input className="addItemInputBox" placeholder="Quantity"  value={this.state.quantity} onChange={(event) => {this.handleChangeQuantity(event.target.value)}}/>
                     <input className="addItemInputBox" placeholder="Location"  value={this.state.location} onChange={(event) => {this.handleChangeLocation(event.target.value)}}/>
@@ -97,7 +105,7 @@ class InventoryItem extends Component{
                     this.state.editing === false ? 
                     (() => this.toggleEditing()) : 
                     () => {
-                        this.props.editItem(this.props.item.id, this.state.itemName, this.state.sku, this.state.quantity, this.state.location, this.state.itemCost, this.state.note)
+                        this.props.editItem(this.props.item.id, this.state.itemName, this.state.editDate, this.state.sku, this.state.quantity, this.state.location, this.state.itemCost, this.state.note)
                         this.toggleEditing()
                         }}>{this.state.editing === true ? "Confirm Edit" : "Edit"}</button>
                 <button className="editAndDeleteButtons" onClick={() => this.props.deleteItem(this.props.item.id)}>Delete</button>
