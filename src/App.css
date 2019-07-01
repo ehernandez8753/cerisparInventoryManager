@@ -14,6 +14,7 @@
     display: flex;
     justify-content: left;
     align-items: center;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
 }
 #mainPageHeader{
     font-family: 'Roboto Condensed', sans-serif;
@@ -60,7 +61,7 @@
     flex-direction: column;
     justify-content: top;
     align-items: left;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .addItemContainer{
     margin: 5% 1% 10% 0%;
@@ -101,7 +102,9 @@
     align-items: left;
     justify-content: left;
     margin: 1% 1% 1% 0%;
+    transition: .2s;
 }
+
 .smallContextBox{
     width: 7.1vw;
     height: 3vh;
@@ -156,7 +159,7 @@
 }
 .tableHeaderBox:hover{
     background-color: rgb(73, 73, 73);
-    padding-top: 1%;
+    padding-top: 2%;
 }
 .editAndDeleteButtons{
     margin-left: 2%;
@@ -171,5 +174,4 @@
 }
 .editAndDeleteButtons:hover{
     background-color: rgba(255, 81, 0, 0.8);
-
 }

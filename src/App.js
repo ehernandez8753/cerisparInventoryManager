@@ -186,16 +186,16 @@ class App extends Component {
         <header className="mainHeader">
           <div id="logoBox">Ceris<span style={{color:"#ff5500"}}>Par</span></div>
         </header>
-        <div className="contentBody">
-          <div className="contentBodyLeft">
-            <h2 id="leftTitle">— Dashboard</h2>
+        <section className="contentBody">
+          <section className="contentBodyLeft">
+            <h2 id="leftTitle" style={{fontWeight: 600}}>Dashboard</h2>
             <h3 id="leftOption">— &nbsp;&nbsp;Inventories</h3>
             <h3 id="leftOption">— &nbsp;&nbsp;Orders</h3>
             <h3 id="leftOption">— &nbsp;&nbsp;Production</h3>
             <h3 id="leftOption">— &nbsp;&nbsp;Receipts</h3>
-          </div>
-          <div className="contentBodyRight">
-            <h1 id="mainPageHeader">Main Inventory # 2341 - 5432 </h1>
+          </section>
+          <section className="contentBodyRight">
+            <h1 id="mainPageHeader">Main Inventory #2341-5432 </h1>
             <hr />
             <div className="tableHeaderContainer" > <TableHeaderComp
              sortItemName={this.sortItemName}
@@ -218,9 +218,9 @@ class App extends Component {
 
             <div className="addItemContainer"> <AddItemComp addItem={this.addItem}/> </div>
             
-          </div>
+          </section>
           
-        </div>
+        </section>
         
 
 

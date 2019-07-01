@@ -107,7 +107,7 @@ class InventoryItem extends Component{
                     () => {
                         this.props.editItem(this.props.item.id, this.state.itemName, this.state.editDate, this.state.sku, this.state.quantity, this.state.location, this.state.itemCost, this.state.note)
                         this.toggleEditing()
-                        }}>{this.state.editing === true ? "Confirm Edit" : "Edit"}</button>
+                        }}>{this.state.editing === true ? "Confirm" : "Edit"}</button>
                 <button className="editAndDeleteButtons" onClick={() => this.props.deleteItem(this.props.item.id)}>Delete</button>
 
             </div>

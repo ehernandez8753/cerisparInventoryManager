@@ -50,6 +50,21 @@ class AddItemComp extends Component{
             currentNote: ""
         })
     }
+    generateRandomItem(){
+        let itemNames = ["Shoes", "Shirts", "Hats", "Bells", "Phones", "Toasters", "Pants", "Blankets"];
+        let letters = ["A", "B", "C", "D", "E"];
+        let notes = ["Delivered by Juan", "Missing 3 units", "", "New Shipment", "Broken Palette", "", ""];
+
+        this.setState({
+            currentItemName: itemNames[Math.floor(Math.random() * itemNames.length)],
+            currentEditDate: "",
+            currentSku: `${(Math.random() * 1000).toFixed(0)}-${(Math.random() * 1000).toFixed(0)}`,
+            currentQuantity: (Math.random() * 100).toFixed(0),
+            currentLocation: `${letters[Math.floor(Math.random() * letters.length)]}${(Math.random()*100).toFixed(0)}`,
+            currentItemCost: `${(Math.random() * 100).toFixed(2)}`,
+            currentNote: notes[Math.floor(Math.random() * notes.length)]
+        })
+    }
     grabCurrentDate(){
        let currentDate = new Date();
        let day = String(currentDate.getDate()).padStart(2,"0");
@@ -71,7 +86,7 @@ class AddItemComp extends Component{
                 <input style={{width: "14vw"}} className="addItemInputBox" value={this.state.currentNote} placeholder="Notes" onChange={(event) => {this.handleChangeNote(event.target.value)}}/>
                 <button className="editAndDeleteButtons" style={{height: "4vh", width: "6vw", fontSize: "1vw"}} onClick={() => {this.props.addItem(this.state.currentItemName, this.grabCurrentDate(), this.state.currentSku, this.state.currentQuantity, this.state.currentLocation, this.state.currentItemCost, this.state.currentNote);
                 this.clearAllInputs()}}>Add Item</button>
-
+                <button className="editAndDeleteButtons" style={{fontSize: ".8vw"}} onClick={() => {this.generateRandomItem()}}>Random Item</button>
             </div>
 
         )
